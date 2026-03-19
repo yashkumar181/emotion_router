@@ -1,0 +1,12 @@
+# Python caches
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Virtual environments (just in case you created it inside the folder)
+env/
+venv/
+emotion_router_env/
