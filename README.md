@@ -37,7 +37,12 @@ I selected **Random Forest** for both classification (emotional state) and regre
 ## Interactive UI Demo
 I have built a local web dashboard. 
 
-To run the interactive app locally:
+<p align="center">
+  <img src="assets/streamlit1.png" width="48%" alt="Streamlit Input Form" />
+  <img src="assets/streamlit2.png" width="48%" alt="Streamlit Routing Result" />
+</p>
+
+** To run the interactive app locally: **
 1. Ensure `streamlit` is installed (`pip install streamlit`).
 2. Run this command in your terminal:
    ```bash
@@ -46,6 +51,11 @@ To run the interactive app locally:
 
 ### Local REST API (FastAPI)
 For headless integration, I deployed the pipeline via a highly-validated FastAPI backend.
+
+![FastAPI Swagger UI - Endpoint Setup](assets/input.png)
+
+![FastAPI Swagger UI - JSON Response](assets/response.png)
+
 1. Install dependencies: `pip install fastapi uvicorn pydantic`
 2. Start the server: `uvicorn api:app --reload`
 3. View the interactive Swagger UI and test the `/api/v1/route` endpoint at: `http://127.0.0.1:8000/docs`
