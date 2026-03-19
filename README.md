@@ -8,6 +8,12 @@ Rather than relying on a heavy deep-learning model or a black-box LLM API, I des
 1. **Machine Learning Layer (Predict):** A `RandomForestClassifier` combined with `TfidfVectorizer` to handle noisy text, alongside `OneHotEncoder` and `StandardScaler` for the contextual metadata.
 2. **Business Logic Layer (Decide & Guide):** A  routing engine (`decision_engine`) that takes the ML predictions and routes the user safely to the correct wellness action.
 
+## Feature Importance & Ablation Study
+During the EDA phase, I conducted an study to compare a Text-Only model against the Hybrid (Text + Metadata) model.
+* **Text-Only Model:** Reached an accuracy ceiling of ~45%. It struggled heavily with short, vague inputs (e.g., "fine") because it lacked context.
+* **Text + Metadata Model:** Reached ~63% accuracy. 
+* **Feature Understanding:** Metadata features like `stress_level` and `sleep_hours` were the most critical deciding factors when the `journal_text` was contradictory. The metadata acted as the "ground truth" for the user's physiological state, overriding sarcastic or vague text tokens.
+
 ### Feature Engineering (Handling the Messiness)
 * **Text (`journal_text`):** Handled via `TfidfVectorizer` to ensure fast, local execution without needing heavy tokenizers. Stop words were removed to focus on core sentiment tokens.
 * **Missing Metadata:** * Missing numeric values (`sleep_hours`) were median-imputed.
@@ -27,3 +33,12 @@ I selected **Random Forest** for both classification (emotional state) and regre
     python pipeline.py
     ```
 4.  The output will be saved as `predictions.csv` in the root directory
+
+## Interactive UI Demo
+I have built a local web dashboard. 
+
+To run the interactive app locally:
+1. Ensure `streamlit` is installed (`pip install streamlit`).
+2. Run this command in your terminal:
+   ```bash
+   streamlit run app.py

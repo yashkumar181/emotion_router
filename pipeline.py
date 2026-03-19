@@ -1,11 +1,13 @@
 import pandas as pd
 import numpy as np
+import joblib
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor
 import warnings
+
 warnings.filterwarnings('ignore')
 
 def load_and_clean_data(filepath):
@@ -78,6 +80,11 @@ def main():
 
     model_state.fit(X_train, y_state)
     model_intensity.fit(X_train, y_intensity)
+
+    joblib.dump(model_state, 'state_model.pkl')
+    joblib.dump(model_intensity, 'intensity_model.pkl')
+    
+    print("Models saved as .pkl files!")
 
     pred_states = model_state.predict(X_test)
     probas = model_state.predict_proba(X_test)
