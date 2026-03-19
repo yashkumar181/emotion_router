@@ -42,3 +42,10 @@ To run the interactive app locally:
 2. Run this command in your terminal:
    ```bash
    streamlit run app.py
+
+
+### Local REST API (FastAPI)
+For headless integration, I deployed the pipeline via a highly-validated FastAPI backend.
+1. Install dependencies: `pip install fastapi uvicorn pydantic`
+2. Start the server: `uvicorn api:app --reload`
+3. View the interactive Swagger UI and test the `/api/v1/route` endpoint at: `http://127.0.0.1:8000/docs`
